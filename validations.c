@@ -6,7 +6,7 @@
 /*   By: jalamarn <jalamarn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 20:02:59 by jalamarn          #+#    #+#             */
-/*   Updated: 2025/12/21 15:48:32 by jalamarn         ###   ########.fr       */
+/*   Updated: 2025/12/24 17:54:26 by jalamarn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	counter(char *t)
 	int	i;
 	int	counter;
 
+	counter = 0;
 	i = 0;
 	if (!t[i])
 		return (0);
@@ -34,11 +35,14 @@ int	counter(char *t)
 	return (1);
 }
 
-int	isdigit(char *t)
+int	ftisdigit(char *t)
 {
 	int	i;
 
 	i = 0;
+	while (t[i] == ' ' || t[i] == '\t' || t[i] == '\r'
+		|| t[i] == '\n' || t[i] == '\v' || t[i] == '\f')
+		i++;
 	if (t[i] == '-' || t[i] == '+')
 		i++;
 	if (!t[i])
@@ -64,28 +68,24 @@ int	ismaxormin(char *t)
 	return (0);
 }
 
-int	dupnum(char *t)
+int	dupnum(t_list **t)
 {
-	int		i;
-	int		j;
-	long	x;
-	long	y;
+	t_list	*tmp;
+	t_list	*tmptwo;
 
-	i = 0;
-	if (!t)
+	if (!t || !(*t))
 		return (0);
-	while (t[i])
+	tmp = (*t);
+	while (tmp->next)
 	{
-		x = ft_atolong(t[i]);
-		j = i + 1;
-		while (t[j])
+		tmptwo = tmp->next;
+		while (tmptwo)
 		{
-			y = ft_atolong(t[j]);
-			if (x == y)
+			if (tmp->content == tmptwo->content)
 				return (0);
-			j++;
+			tmptwo = tmptwo->next;
 		}
-		i++;
+		tmp = tmp->next;
 	}
 	return (1);
 }
@@ -102,5 +102,3 @@ int	issorted(t_list *t)
 	}
 	return (1);
 }
-
-

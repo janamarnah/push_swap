@@ -6,7 +6,7 @@
 /*   By: jalamarn <jalamarn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 19:34:59 by jalamarn          #+#    #+#             */
-/*   Updated: 2025/12/21 19:54:01 by jalamarn         ###   ########.fr       */
+/*   Updated: 2025/12/24 17:55:42 by jalamarn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void	twonums(t_list **t)
 
 void	threenums(t_list **t)
 {
-	if ((*t)->content < (*t)->next->content)
+	if ((*t)->content < (*t)->next->content
+		&& (*t)->next->content > (*t)->next->next->content)
 	{
 		sa(t);
 		ra(t);
 	}
-	if ((*t)->content > (*t)->next->content)
+	else if ((*t)->content > (*t)->next->content)
 	{
 		if ((*t)->content < (*t)->next->next->content)
 			sa(t);

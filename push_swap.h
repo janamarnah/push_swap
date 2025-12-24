@@ -6,7 +6,7 @@
 /*   By: jalamarn <jalamarn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 21:03:10 by jalamarn          #+#    #+#             */
-/*   Updated: 2025/12/21 19:54:45 by jalamarn         ###   ########.fr       */
+/*   Updated: 2025/12/24 17:46:11 by jalamarn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define PUSH_SWAP_H
 # include <limits.h>
 # include <unistd.h>
+# include <stdlib.h>
+
+typedef struct s_list
+{
+	long long		content;
+	struct s_list	*next;
+}	t_list;
 
 long	ft_atolong(const char *nptr);
 void	pa(t_list **a, t_list **b);
@@ -28,17 +35,18 @@ void	sa(t_list **n);
 void	sb(t_list **n);
 void	ss(t_list **n, t_list **m);
 int		counter(char *t);
-int		isdigit(char *t);
+int		ftisdigit(char *t);
 int		ismaxormin(char *t);
-int		dupnum(char *t);
+int		dupnum(t_list **t);
 int		issorted(t_list *t);
 void	twonums(t_list **t);
 void	threenums(t_list **t);
-
-typedef struct s_list
-{
-	long long		content;
-	struct s_list	*next;
-}	t_list;
+void	fournums(t_list **t, t_list	**b);
+void	fivenums(t_list **t, t_list	**b);
+t_list	*add_node(long x);
+void	node_tolist(t_list **t, t_list *n);
+void	list_clear(t_list **t);
+int		ft_lstsize(t_list **t);
+void	radixsort(t_list **t);
 
 #endif

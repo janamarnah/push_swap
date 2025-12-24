@@ -6,7 +6,7 @@
 /*   By: jalamarn <jalamarn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 16:06:43 by jalamarn          #+#    #+#             */
-/*   Updated: 2025/12/21 18:17:30 by jalamarn         ###   ########.fr       */
+/*   Updated: 2025/12/24 17:55:29 by jalamarn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	node_tolist(t_list **t, t_list *n)
 
 	if (!t || !n)
 		return ;
+	if (!*t)
+	{
+		*t = n;
+		return ;
+	}
 	tmp = (*t);
 	while (tmp->next)
 		tmp = tmp->next;

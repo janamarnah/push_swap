@@ -1,7 +1,7 @@
 NAME = push_swap
 
 SRC = main.c ft_atolong.c  validations.c list_operations.c\
-push.c reverse_rotate.c rotate.c swap.c sort2to3.c \
+push.c reverse_rotate.c rotate.c swap.c sort2to3.c sort4to5.c radixsort.c\
 
 CC = cc
 

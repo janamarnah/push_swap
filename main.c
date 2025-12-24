@@ -1,43 +1,64 @@
-int main(int argc, char **argv)
-{
-	t_list  **t;
-	t_list  **b;
-	t_list  *node;
-	t_list  *tmp;
-	int     args;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jalamarn <jalamarn@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/20 18:03:46 by jalamarn          #+#    #+#             */
+/*   Updated: 2025/12/24 19:42:22 by jalamarn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	tmp = (*t);
+#include "push_swap.h"
+
+static void	finalsort(t_list **t)
+{
+	t_list	*b;
+
+	b = NULL;
+	if (issorted(*t))
+		return ;
+	if (ft_lstsize(t) <= 5)
+	{
+		if (ft_lstsize(t) == 2)
+			twonums(t);
+		if (ft_lstsize(t) == 3)
+			threenums(t);
+		if (ft_lstsize(t) == 4)
+			fournums(t, &b);
+		if (ft_lstsize(t) == 5)
+			fivenums(t, &b);
+	}
+	else
+		radixsort(t);
+}
+
+int	main(int argc, char **argv)
+{
+	t_list	*t;
+	t_list	*node;
+	int		args;
+
+	t = NULL;
 	args = 0;
 	if (argc <= 1)
 		return (0);
-	while (argv)
+	while (++args < argc)
 	{
-		node = (add_node(atolong(argv[args])));
-		node_tolist(node, t);
-		args++;
+		node = (add_node(ft_atolong(argv[args])));
+		node_tolist(&t, node);
 	}
 	args = 0;
-	while (argv)
+	while (++args < argc)
 	{
-		if (!isdigit(argv[args]))
+		if (!dupnum(&t) || !ftisdigit(argv[args])
+			|| !ismaxormin(argv[args]) || !counter(argv[args]))
+		{
+			list_clear(&t);
 			return (write(2, "Error\n", 6));
-		if (!ismaxormin(argv[args]))
-			return (write(2, "Error\n", 6));
-		if (!counter(argv[args]))
-			return (write(2, "Error\n", 6));
-		if (!dupnum(argv[args]))
-			return (write(2, "Error\n", 6));
-		args++;
+		}
 	}
-	if (listsize(t) <= 5 && listsize(t) > 1)
-	{
-		if (listsize(t) = 2)
-			twonum(t);
-		if (listsize(t) = 3)
-			threenum(t);
-		if (listsize(t) = 4)
-			fournum(t, b);
-		 if (listsize(t) = 5)
-            fivenum(t, b);
-	}
+	finalsort(&t);
+	return (0);
 }
