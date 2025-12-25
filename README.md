@@ -7,6 +7,7 @@
 Push_swap is a sorting algorithm project where the goal is to write a C program that sorts a list of integers in ascending order using two stacks and a restricted set of operations. The program must achieve the sorting with the **smallest** possible number of moves.
 
 The numbers are initially stored in stack T, while stack B is used as a helper during the process. With only specific stack operations are allowed:
+
 sa, sb, ss – swap the first two elements
 pa, pb – push the top element between stacks
 ra, rb, rr – rotate (shift up)
